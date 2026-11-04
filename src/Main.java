@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class Main {
     private static final Pattern INT = Pattern.compile("-?\\d{1,9}");
-    private static final Pattern DECIMAL = Pattern.compile("-?\\d{1,20}([.,]\\d{1,40})?");
+    private static final Pattern DECIMAL = Pattern.compile("-?\\d+([.,]\\d+)?");
     private static final Map<Integer, String> statusMessages = Map.of(200, "OK", 400, "Bad Request", 500, "Internal Server Error", 405, "Method Not Allowed");
     private static final String OK_MESSAGE = "Верное значение.";
 
