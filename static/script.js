@@ -45,8 +45,8 @@ let wasDrawn = false;
 let pointActive = false;
 
 const INT = /^-?\d{1,9}$/;
-const DECIMAL = /^-?\d{1,20}([.,]\d{1,40})?$/;
-const VALID_MESSAGE = "Р’РµСЂРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ.";
+const DECIMAL = /^-?\d+([.,]\d+)?$/;
+const VALID_MESSAGE = "Верное значение.";
 
 class ValidationException extends Error {}
 
@@ -170,15 +170,15 @@ form.addEventListener("submit", async (event) => {
         handleServerAnswer(data);
     }).catch(error => {
         if (error instanceof TypeError){
-            console.error("Р’РѕР·РЅРёРєР»Рё РїСЂРѕР±Р»РµРјС‹ РІРѕ РІСЂРµРјСЏ СЃРѕРµРґРёРЅРµРЅРёСЏ СЃ СЃРµСЂРІРµСЂРѕРј.");
-            bad_error_label.textContent = "Р’РѕР·РЅРёРєР»Рё РїСЂРѕР±Р»РµРјС‹ РІРѕ РІСЂРµРјСЏ СЃРѕРµРґРёРЅРµРЅРёСЏ СЃ СЃРµСЂРІРµСЂРѕРј.";
+            console.error("Возникли проблемы во время соединения с сервером.");
+            bad_error_label.textContent = "Возникли проблемы во время соединения с сервером.";
         }
         else if (error instanceof SyntaxError){
-            console.error("Р’РѕР·РЅРёРєР»Рё РїСЂРѕР±Р»РµРјС‹ РїСЂРё РѕР±СЂР°Р±РѕС‚РєРµ СЃРµСЂРІРµСЂРѕРј Р·Р°РїСЂРѕСЃР°.");
-            bad_error_label.textContent = "Р’РѕР·РЅРёРєР»Рё РїСЂРѕР±Р»РµРјС‹ РїСЂРё РѕР±СЂР°Р±РѕС‚РєРµ СЃРµСЂРІРµСЂРѕРј Р·Р°РїСЂРѕСЃР°.";
+            console.error("Возникли проблемы при обработке сервером запроса.");
+            bad_error_label.textContent = "Возникли проблемы при обработке сервером запроса.";
         }
         else {
-            console.error("Р’РѕР·РЅРёРєР»Р° РЅРµРёР·РІРµСЃС‚РЅР°СЏ РѕС€РёР±РєР°.");
+            console.error("Возникла неизвестная ошибка.");
             console.error(error);
         }
     });
@@ -252,7 +252,7 @@ function addRow(record) {
         <td>${record.y}</td>
         <td>${record.r}</td>
         <td class="${record.result ? "success-text" : "fail-text"}">
-            ${record.result ? "РџРѕРїР°РґР°РЅРёРµ" : "РџСЂРѕРјР°С…"}
+            ${record.result ? "Попадание" : "Промах"}
         </td>
         <td>${record.timestamp}</td>
         <td>${record.execTime}</td>
